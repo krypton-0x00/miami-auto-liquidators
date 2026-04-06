@@ -27,7 +27,7 @@ const galleryImages = [
   },
   {
     id: 5,
-    url: "https://images.unsplash.com/photo-1606016159991-dfe4bc2749b5?auto=format&fit=crop&w=1200&q=80",
+    url: "https://images.unsplash.com/photo-1568844293986-8d0400bd4745?auto=format&fit=crop&w=1200&q=80",
     title: "Honda CR-V",
   },
   {
