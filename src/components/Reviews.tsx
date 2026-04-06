@@ -34,12 +34,6 @@ const reviews = [
     rating: 5,
     text: "Excellent service. I've been in a lot of dealers but I think this one was the best. I got a good car for an excellent price.",
   },
-  {
-    name: "Augusto",
-    date: "Business Owner",
-    rating: 5,
-    text: "Thank you for choosing our dealer for your purchase. We wanted to express our gratitude for your recent purchase. We hope you enjoy driving your new car as much as we enjoyed having you as a customer.",
-  },
 ];
 
 const container = {
