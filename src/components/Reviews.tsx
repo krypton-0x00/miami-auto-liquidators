@@ -59,19 +59,33 @@ const item = {
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="py-20 bg-gray-900">
+    <section id="reviews" className="py-20 bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="flex items-center justify-center gap-2 mb-4">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, type: "spring" }}
+            className="flex items-center justify-center gap-2 mb-4"
+          >
             {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + i * 0.1 }}
+                className="text-yellow-400"
+              >★</motion.span>
             ))}
-          </div>
+          </motion.div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             What Our Customers Say
           </h2>
@@ -91,7 +105,8 @@ export default function Reviews() {
             <motion.div
               key={index}
               variants={item}
-              className="bg-gray-800 rounded-2xl p-8 relative"
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="bg-[#171717] rounded-2xl p-8 relative border border-[#262626] hover:border-blue-600/30 transition-all"
             >
               <Quote className="absolute top-6 right-6 w-10 h-10 text-blue-600/20" />
               <div className="flex items-center gap-1 mb-4">
@@ -116,11 +131,16 @@ export default function Reviews() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mt-12"
         >
-          <button className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-200 transition-colors"
+          >
             Read All Reviews
-          </button>
+          </motion.button>
         </motion.div>
       </div>
     </section>

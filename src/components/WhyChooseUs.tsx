@@ -60,18 +60,19 @@ const item = {
 
 export default function WhyChooseUs() {
   return (
-    <section id="why-us" className="py-20 bg-white">
+    <section id="why-us" className="py-20 bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Why Choose Miami Auto Liquidators
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             We are committed to providing an exceptional car buying experience with transparency and integrity.
           </p>
         </motion.div>
@@ -87,15 +88,20 @@ export default function WhyChooseUs() {
             <motion.div
               key={index}
               variants={item}
-              className="p-8 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-colors group"
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="p-8 rounded-2xl bg-[#171717] hover:bg-[#1f1f1f] border border-[#262626] hover:border-blue-600/50 transition-all group"
             >
-              <div className="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <motion.div 
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.5 }}
+                className="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+              >
                 <feature.icon className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              </motion.div>
+              <h3 className="text-xl font-bold text-white mb-3">
                 {feature.title}
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-400">
                 {feature.description}
               </p>
             </motion.div>
@@ -106,6 +112,7 @@ export default function WhyChooseUs() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
         >
           {[
@@ -114,12 +121,19 @@ export default function WhyChooseUs() {
             { number: "15+", label: "Years Experience" },
             { number: "4.9", label: "Average Rating" },
           ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
+              className="text-center"
+            >
+              <div className="text-4xl md:text-5xl font-bold text-blue-500 mb-2">
                 {stat.number}
               </div>
-              <div className="text-gray-600 font-medium">{stat.label}</div>
-            </div>
+              <div className="text-gray-400 font-medium">{stat.label}</div>
+            </motion.div>
           ))}
         </motion.div>
       </div>

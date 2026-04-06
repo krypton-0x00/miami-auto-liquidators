@@ -65,29 +65,36 @@ export default function Gallery() {
   }, []);
 
   return (
-    <section id="gallery" className="py-20 bg-white">
+    <section id="gallery" className="py-20 bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Our Gallery
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Take a look at our inventory and dealership. Quality vehicles await you.
           </p>
         </motion.div>
 
-        <div className="relative overflow-hidden rounded-2xl">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative overflow-hidden rounded-2xl"
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.5 }}
               className="relative h-[500px] cursor-pointer"
               onClick={() => setIsLightboxOpen(true)}
@@ -98,54 +105,66 @@ export default function Gallery() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-8 left-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="absolute bottom-8 left-8"
+              >
                 <h3 className="text-2xl font-bold text-white">
                   {galleryImages[currentIndex].title}
                 </h3>
-              </div>
+              </motion.div>
             </motion.div>
           </AnimatePresence>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={(e) => {
               e.stopPropagation();
               prevSlide();
             }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-colors"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center shadow-lg transition-colors backdrop-blur-sm"
           >
-            <ChevronLeft className="w-6 h-6 text-gray-900" />
-          </button>
+            <ChevronLeft className="w-6 h-6 text-white" />
+          </motion.button>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={(e) => {
               e.stopPropagation();
               nextSlide();
             }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-colors"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center shadow-lg transition-colors backdrop-blur-sm"
           >
-            <ChevronRight className="w-6 h-6 text-gray-900" />
-          </button>
+            <ChevronRight className="w-6 h-6 text-white" />
+          </motion.button>
 
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
             {galleryImages.map((_, i) => (
-              <button
+              <motion.button
                 key={i}
                 onClick={(e) => {
                   e.stopPropagation();
                   setCurrentIndex(i);
                 }}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  currentIndex === i ? "bg-white w-8" : "bg-white/50"
-                }`}
+                animate={{ 
+                  width: currentIndex === i ? 32 : 12,
+                  backgroundColor: currentIndex === i ? "#3b82f6" : "rgba(255,255,255,0.3)"
+                }}
+                className="h-2 rounded-full transition-all"
               />
             ))}
           </div>
-        </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           {galleryImages.map((image, index) => (
@@ -155,7 +174,7 @@ export default function Gallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.05, y: -5 }}
               className="relative h-32 rounded-xl overflow-hidden cursor-pointer"
               onClick={() => {
                 setCurrentIndex(index);
@@ -167,6 +186,7 @@ export default function Gallery() {
                 alt={image.title}
                 className="w-full h-full object-cover"
               />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
             </motion.div>
           ))}
         </motion.div>
@@ -181,14 +201,18 @@ export default function Gallery() {
             className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
             onClick={() => setIsLightboxOpen(false)}
           >
-            <button
+            <motion.button
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0 }}
               onClick={() => setIsLightboxOpen(false)}
               className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
             >
               <X className="w-6 h-6 text-white" />
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
               onClick={(e) => {
                 e.stopPropagation();
                 prevSlide();
@@ -196,20 +220,21 @@ export default function Gallery() {
               className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
             >
               <ChevronLeft className="w-6 h-6 text-white" />
-            </button>
+            </motion.button>
 
             <motion.img
               key={currentIndex}
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+              exit={{ scale: 0.8, opacity: 0 }}
               src={galleryImages[currentIndex].url}
               alt={galleryImages[currentIndex].title}
-              className="max-w-[90vw] max-h-[80vh] object-contain"
+              className="max-w-[90vw] max-h-[80vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
             />
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
               onClick={(e) => {
                 e.stopPropagation();
                 nextSlide();
@@ -217,9 +242,13 @@ export default function Gallery() {
               className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
             >
               <ChevronRight className="w-6 h-6 text-white" />
-            </button>
+            </motion.button>
 
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"
+            >
               {galleryImages.map((_, i) => (
                 <button
                   key={i}
@@ -232,7 +261,7 @@ export default function Gallery() {
                   }`}
                 />
               ))}
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
