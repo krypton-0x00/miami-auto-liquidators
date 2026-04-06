@@ -40,9 +40,7 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center gap-2"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">M</span>
-            </div>
+            <img src="/logo.png" alt="Miami Auto Liquidators" className="w-12 h-12 object-contain rounded-lg" />
             <div>
               <h1 className="text-xl font-bold text-white">Miami Auto</h1>
               <p className="text-xs text-gray-400 -mt-1">Liquidators</p>

@@ -128,13 +128,16 @@ export default function Reviews() {
           transition={{ duration: 0.6 }}
           className="text-center mt-12"
         >
-          <motion.button
+          <motion.a
+            href="https://maps.app.goo.gl/JqPKQrHH6KT2e3W26"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-200 transition-colors"
           >
             Read All Reviews
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
     </section>

@@ -104,9 +104,7 @@ export default function Footer() {
               whileHover={{ scale: 1.05 }}
               className="flex items-center gap-2"
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">M</span>
-              </div>
+              <img src="/logo.png" alt="Miami Auto Liquidators" className="w-12 h-12 object-contain rounded-lg" />
               <div>
                 <h1 className="text-xl font-bold text-white">Miami Auto</h1>
                 <p className="text-xs text-gray-500 -mt-1">Liquidators</p>
